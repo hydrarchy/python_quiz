@@ -68,15 +68,12 @@ def game_level_choice(level_choice):
           print hard_question
           return (hard_question, hard_answers)
 
-
-# The play_game function initiates the game by first printing the rules for the user.  It
-# then calls the game_level_choice function and assigns variables to its output which are
-# the question and answers for the selected difficulty level.  It then prints the question
-# string and prompts the user to guess which answers go in the blank spaces.  The user gets
-# 4 tries for each blank.  If they type an answer that matches the appropriate string in
-# the answers list, the blank is replaced with the correct answer, and the updated question
-# string printed for the user.  The user is then asked to guess what goes in the next blank.
-# This continues until the user guesses all of the blanks correctly.  
+# The play_game function takes two inputs - the question_string and answer_list variables 
+# based on the output from the game_level_choice function. It then prompts the user to guess 
+# which answers go in the blank spaces.  The user gets 4 tries for each blank.  If they type 
+# an answer that matches the appropriate string in the answers list, the blank is replaced with 
+# the correct answer, and the updated question string printed for the user.  The user is then asked 
+# to guess what goes in the next blank.  This continues until the user guesses all of the blanks correctly.  
 
 def play_game(question_string, answer_list):
      answer_index = 0
@@ -88,18 +85,19 @@ def play_game(question_string, answer_list):
                     print '\nYou have exceeded the number of guesses!\n'
                     quit()
                else:
-                    print '\nThat is not the correct answer, try again.  Guesses remaining: ', 4 - guess_count
+                    print '\nThat is not the correct answer, try again.  Guesses remaining: ', 4 - guess_count, '\n', question_string
                     guess_count += 1
-                    print question_string
                     guess = raw_input('What word should replace ' + blank_spaces[answer_index] + '? ')
           if str.lower(guess) == str.lower(answer_list[answer_index]):
-               print 'You got it right!'
                question_string = question_string.replace(blank_spaces[answer_index],answer_list[answer_index])
-               print question_string
+               print '\nYou got it right!\n', question_string
           answer_index += 1
      print 'You won!'
 
-# Calls the play_game function which allows the user to play the game!
+# Prints an introduction of the game and assigns the question_string and answer_list variables based on input 
+# from the user, which is the selection of the difficulty level.  The play_game function is then called which
+# starts the game!
+
 print '''\n\nThis is a fill in the blank quiz.\n\nYou will be asked to read a paragraph and 
 guess which words should replace the blank spaces.\n\nPlease start by choosing a difficulty 
 level.\n'''
